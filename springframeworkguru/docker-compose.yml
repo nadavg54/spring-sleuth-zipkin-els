@@ -1,0 +1,34 @@
+version: '3'
+services:
+  hello-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile #here you specify the name of your Dockerfile file
+    volumes:
+      - "./hello-service/build/libs/hello-service-0.0.1-SNAPSHOT.jar:/app.jar"
+    ports:
+      - 8080:8080
+#    networks:
+#      - some-net
+    command: "java -jar app.jar"
+  users-service:
+    image: openjdk:14-alpine
+    volumes:
+      - "./users-service/build/libs/users-service-0.0.1-SNAPSHOT.jar:/app.jar"
+    command: "java -jar app.jar"
+#    networks:
+#      - some-net
+  users-service-2:
+    image: openjdk:14-alpine
+    volumes:
+      - "./users-service/build/libs/users-service-0.0.1-SNAPSHOT.jar:/app.jar"
+    command: "java -jar app.jar"
+#    networks:
+#      - some-net
+  consul:
+    image: consul:1.7
+    network_mode: host
+
+#networks:
+# some-net:
+#    driver: bridge

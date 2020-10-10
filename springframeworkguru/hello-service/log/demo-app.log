@@ -1,0 +1,104 @@
+2020-10-10 00:45:22.109  INFO [hello-service,,,] 111082 --- [Test worker] g.s.h.HelloServiceApplicationTests       : No active profile set, falling back to default profiles: default
+2020-10-10 00:45:22.786  WARN [hello-service,,,] 111082 --- [Test worker] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2020-10-10 00:45:23.046  INFO [hello-service,,,] 111082 --- [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=525d6d24-1a60-3e34-808e-e29bbe8cc12a
+2020-10-10 00:45:23.834  WARN [hello-service,,,] 111082 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 00:45:23.834  INFO [hello-service,,,] 111082 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 00:45:23.850  INFO [hello-service,,,] 111082 --- [Test worker] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@24da8ad7
+2020-10-10 00:45:24.925  WARN [hello-service,,,] 111082 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 00:45:24.926  INFO [hello-service,,,] 111082 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 00:45:25.308  INFO [hello-service,,,] 111082 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-10 00:45:26.097  WARN [hello-service,,,] 111082 --- [Test worker] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-10-10 00:45:26.492  INFO [hello-service,,,] 111082 --- [Test worker] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 00:45:26.633  INFO [hello-service,,,] 111082 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-10-10 00:45:26.747  INFO [hello-service,,,] 111082 --- [Test worker] g.s.h.HelloServiceApplicationTests       : Started HelloServiceApplicationTests in 5.318 seconds (JVM running for 6.655)
+2020-10-10 00:45:26.772 ERROR [hello-service,6a7203fb509daaa1,6a7203fb509daaa1,true] 111082 --- [catalogWatchTaskScheduler-1] o.s.c.c.discovery.ConsulDiscoveryClient  : Error watching Consul CatalogServices
+
+com.ecwid.consul.transport.TransportException: org.apache.http.conn.HttpHostConnectException: Connect to 172.17.0.1:8500 [/172.17.0.1] failed: Connection refused (Connection refused)
+	at com.ecwid.consul.transport.AbstractHttpTransport.executeRequest(AbstractHttpTransport.java:77) ~[consul-api-1.4.1.jar:na]
+	at com.ecwid.consul.transport.AbstractHttpTransport.makeGetRequest(AbstractHttpTransport.java:34) ~[consul-api-1.4.1.jar:na]
+	at com.ecwid.consul.v1.ConsulRawClient.makeGetRequest(ConsulRawClient.java:128) ~[consul-api-1.4.1.jar:na]
+	at com.ecwid.consul.v1.catalog.CatalogConsulClient.getCatalogServices(CatalogConsulClient.java:120) ~[consul-api-1.4.1.jar:na]
+	at com.ecwid.consul.v1.ConsulClient.getCatalogServices(ConsulClient.java:372) ~[consul-api-1.4.1.jar:na]
+	at org.springframework.cloud.consul.discovery.ConsulCatalogWatch.catalogServicesWatch(ConsulCatalogWatch.java:129) ~[spring-cloud-consul-discovery-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.cloud.sleuth.instrument.async.TraceRunnable.run(TraceRunnable.java:67) ~[spring-cloud-sleuth-core-2.2.2.RELEASE.jar:2.2.2.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[na:1.8.0_191]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) ~[na:1.8.0_191]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) ~[na:1.8.0_191]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) ~[na:1.8.0_191]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) ~[na:1.8.0_191]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) ~[na:1.8.0_191]
+	at java.lang.Thread.run(Thread.java:748) ~[na:1.8.0_191]
+Caused by: org.apache.http.conn.HttpHostConnectException: Connect to 172.17.0.1:8500 [/172.17.0.1] failed: Connection refused (Connection refused)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:221) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:165) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:140) ~[httpclient-4.5.12.jar:4.5.12]
+	at com.ecwid.consul.transport.AbstractHttpTransport.executeRequest(AbstractHttpTransport.java:61) ~[consul-api-1.4.1.jar:na]
+	... 14 common frames omitted
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method) ~[na:1.8.0_191]
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350) ~[na:1.8.0_191]
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206) ~[na:1.8.0_191]
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188) ~[na:1.8.0_191]
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392) ~[na:1.8.0_191]
+	at java.net.Socket.connect(Socket.java:589) ~[na:1.8.0_191]
+	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75) ~[httpclient-4.5.12.jar:4.5.12]
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142) ~[httpclient-4.5.12.jar:4.5.12]
+	... 26 common frames omitted
+
+2020-10-10 00:45:27.070  INFO [hello-service,,,] 111082 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 00:45:27.281  INFO [hello-service,,,] 111082 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-10 17:10:45.248  INFO [hello-service,,,] 98691 --- [Test worker] g.s.h.HelloServiceApplicationTests       : No active profile set, falling back to default profiles: default
+2020-10-10 17:10:46.024  WARN [hello-service,,,] 98691 --- [Test worker] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2020-10-10 17:10:46.268  INFO [hello-service,,,] 98691 --- [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=525d6d24-1a60-3e34-808e-e29bbe8cc12a
+2020-10-10 17:10:47.072  WARN [hello-service,,,] 98691 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 17:10:47.073  INFO [hello-service,,,] 98691 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 17:10:47.091  INFO [hello-service,,,] 98691 --- [Test worker] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@689640ff
+2020-10-10 17:10:48.322  WARN [hello-service,,,] 98691 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 17:10:48.322  INFO [hello-service,,,] 98691 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 17:10:48.720  INFO [hello-service,,,] 98691 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-10 17:10:49.519  WARN [hello-service,,,] 98691 --- [Test worker] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-10-10 17:10:49.930  INFO [hello-service,,,] 98691 --- [Test worker] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 17:10:50.096  INFO [hello-service,,,] 98691 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-10-10 17:10:50.220  INFO [hello-service,,,] 98691 --- [Test worker] g.s.h.HelloServiceApplicationTests       : Started HelloServiceApplicationTests in 5.679 seconds (JVM running for 7.065)
+2020-10-10 17:10:50.577  INFO [hello-service,,,] 98691 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 17:10:50.689  INFO [hello-service,,,] 98691 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-10 17:27:27.019  INFO [hello-service,,,] 105965 --- [Test worker] g.s.h.HelloServiceApplicationTests       : No active profile set, falling back to default profiles: default
+2020-10-10 17:27:27.738  WARN [hello-service,,,] 105965 --- [Test worker] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2020-10-10 17:27:27.989  INFO [hello-service,,,] 105965 --- [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=525d6d24-1a60-3e34-808e-e29bbe8cc12a
+2020-10-10 17:27:28.789  WARN [hello-service,,,] 105965 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 17:27:28.790  INFO [hello-service,,,] 105965 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 17:27:28.804  INFO [hello-service,,,] 105965 --- [Test worker] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@689640ff
+2020-10-10 17:27:29.843  WARN [hello-service,,,] 105965 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 17:27:29.844  INFO [hello-service,,,] 105965 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 17:27:30.230  INFO [hello-service,,,] 105965 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-10 17:27:31.043  WARN [hello-service,,,] 105965 --- [Test worker] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-10-10 17:27:31.589  INFO [hello-service,,,] 105965 --- [Test worker] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 17:27:31.737  INFO [hello-service,,,] 105965 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-10-10 17:27:31.832  INFO [hello-service,,,] 105965 --- [Test worker] g.s.h.HelloServiceApplicationTests       : Started HelloServiceApplicationTests in 5.447 seconds (JVM running for 6.581)
+2020-10-10 17:27:32.096  INFO [hello-service,,,] 105965 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 17:27:32.238  INFO [hello-service,,,] 105965 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-10 20:26:52.177  INFO [hello-service,,,] 31950 --- [Test worker] g.s.h.HelloServiceApplicationTests       : No active profile set, falling back to default profiles: default
+2020-10-10 20:26:53.035  WARN [hello-service,,,] 31950 --- [Test worker] o.s.boot.actuate.endpoint.EndpointId     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2020-10-10 20:26:53.296  INFO [hello-service,,,] 31950 --- [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=525d6d24-1a60-3e34-808e-e29bbe8cc12a
+2020-10-10 20:26:54.114  WARN [hello-service,,,] 31950 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 20:26:54.115  INFO [hello-service,,,] 31950 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 20:26:54.131  INFO [hello-service,,,] 31950 --- [Test worker] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@689640ff
+2020-10-10 20:26:55.573  WARN [hello-service,,,] 31950 --- [Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-10-10 20:26:55.574  INFO [hello-service,,,] 31950 --- [Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-10-10 20:26:55.984  INFO [hello-service,,,] 31950 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-10 20:26:56.810  WARN [hello-service,,,] 31950 --- [Test worker] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2020-10-10 20:26:57.273  INFO [hello-service,,,] 31950 --- [Test worker] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 20:26:57.420  INFO [hello-service,,,] 31950 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-10-10 20:26:57.514  INFO [hello-service,,,] 31950 --- [Test worker] g.s.h.HelloServiceApplicationTests       : Started HelloServiceApplicationTests in 6.106 seconds (JVM running for 7.485)
+2020-10-10 20:26:57.893  INFO [hello-service,,,] 31950 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'catalogWatchTaskScheduler'
+2020-10-10 20:26:58.043  INFO [hello-service,,,] 31950 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
